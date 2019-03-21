@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]>
+<html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="no-js" lang="en"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Blog Achieve --WSL</title>
+    <meta name="author" content="WSL">
+
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!--<link rel="canonical" href="#">-->
+    <link href="{{ url_for('static', filename='favicon.ico')}}" rel="icon">
+    <link href="{{ url_for('static', filename='screen.css')}}" media="screen, projection" rel="stylesheet"
+          type="text/css">
+    {% block header %}
+    {% endblock %}
+
+
+</head>
+
+<body>
+<header role="banner">
+    <hgroup>
+        <h1><a href="#">WSL' Blog</a></h1>
+
+        <h2>We slept on the floor We waded through the river !</h2>
+
+    </hgroup>
+
+</header>
+<nav role="navigation">
+
+    <ul class="main-navigation">
+        <li><a href="{{ url_for('index')}}">Blog</a></li>
+        <li><a href="{{ url_for('achieve')}}">Archives</a></li>
+        <!--<li><a href="#">Talks</a></li>-->
+        <!--<li><a href="#">Other Writing</a></li>-->
+        <li><a href="{{ url_for('about')}}">About</a></li>
+    </ul>
+
+</nav>
+<div id="main">
+    <div id="content">
+        <div>
+            <article role="article">
+                <a>Title</a>
+                {% block title %}
+                <!--<header>-->
+                    <!--&lt;!&ndash;<h1 class="entry-title">Bolg</h1>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p class="meta">&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;<time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,&ndash;&gt;-->
+                            <!--&lt;!&ndash;2014&ndash;&gt;-->
+                        <!--&lt;!&ndash;</time>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                <!--</header>-->
+                {% endblock%}
+                {% block article %}
+                {% endblock %}
+
+            </article>
+
+        </div>
+
+        <aside class="sidebar">
+
+            <section>
+                <h1>Recent Posts</h1>
+                <ul>
+                    {% for article in articles %}
+                    <li class="post">
+                        <a href="#">{{ article.title }}</a>
+                    </li>
+
+                </ul>
+                {% endfor %}
+                <h1>Tags</h1>
+                <ul>
+                    {% for tag in tags %}
+                    <li class="post">
+                        <a href="#">{{ tag.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+
+        </aside>
+
+
+    </div>
+</div>
+<footer role="contentinfo"><p>
+    Blog - WSL -
+    <span class="credit">Powered by <a href="https://github.com/pallets/flask">Flask</a></span>
+    <span class="credit">Theme From <a href="http://akaptur.com/">Allison Kaptur</a></span>
+</p>
+</footer>
+
+
+{% block script %}
+{% endblock %}
+</body>
+</html>
