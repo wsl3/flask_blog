@@ -3,11 +3,15 @@ from faker import Faker
 from models import Admin, Article, Tag, Info
 from random import randint
 import click
+from time import sleep
 
 
 
 @app.cli.command()
 def forge():
+    db.drop_all()
+    db.create_all()
+
     fake = Faker(locale="zh_CN")
 
 
@@ -44,4 +48,11 @@ def forge():
             continue
     db.session.commit()
 
+    # Info
+    blogTitle = "wsl' blog"
+    blogSubTitle = "wsdwsd"
+    text = "我是来自我是来自我是"
+    info = Info()
+    db.session.add(info)
+    db.session.commit()
     click.echo("Done.")

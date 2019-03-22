@@ -51,7 +51,7 @@ class Tag(db.Model):
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     blogTitle = db.Column(db.String(250), nullable=False, default="WSL' Blog")
-    bolgSubTitle = db.Column(db.String(600), nullable=False,
+    blogSubTitle = db.Column(db.String(600), nullable=False,
                              default="We slept on the floor We waded through the river !")
     text = db.Column(db.Text)  # About中的文本
 
