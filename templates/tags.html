@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block headtitle %}
+Tag --WSL
+{%endblock%}
+
+{% block title %}
+<header>
+    <h1 class="entry-title">Search Tag:&nbsp;{{FoundTag.name}}</h1>
+</header>
+{% endblock %}
+
+
+{% block article %}
+<div id="blog-archives">
+    {% for article in Articles %}
+    <article>
+
+        <h1><a href="{{ url_for('index', id=article.id)}}">{{ article.title }}</a></h1>
+        <time datetime="{{ article.timestamp }}" pubdate><span class='month'>{{ article.timestamp.month}}月</span><span
+                class='day'>{{ article.timestamp.day}}日</span></time>
+
+        <footer>
+            <span class="categories">posted in {% for tag in article.tags%}<a class='category' href="{{ url_for('searchTag', id=tag.id)}}">&nbsp;<span>{{tag.name}}</span>&nbsp;</a>{%endfor%}</span>
+        </footer>
+
+
+    </article>
+    {% endfor %}
+
+
+
+
+
+</div>
+{% endblock %}
+
+
+
+
