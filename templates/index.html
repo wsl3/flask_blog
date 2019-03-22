@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+
+
+{% block title %}
+<header>
+    <h1 class="entry-title">{{showArticle.title}}</h1>
+    <p class="meta">
+
+
+        <time datetime="{{showArticle.timestamp}}" pubdate data-updated="true"><span>{{showArticle.timestamp}}</span></time>
+
+    </p>
+
+</header>
+{% endblock %}
+
+
+{% block article %}
+
+    {{ showArticle.text }}
+
+{% endblock %}

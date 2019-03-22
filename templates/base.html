@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <title>Blog Achieve --WSL</title>
-    <meta name="author" content="WSL">
+    <meta name="author" content="{{admin.username}}">
 
     <!-- http://t.co/dKP3o1e -->
     <meta name="HandheldFriendly" content="True">
@@ -29,9 +29,9 @@
 <body>
 <header role="banner">
     <hgroup>
-        <h1><a href="#">WSL' Blog</a></h1>
+        <h1><a href="{{url_for('index')}}">{{ info.blogTitle}}</a></h1>
 
-        <h2>We slept on the floor We waded through the river !</h2>
+        <h2>{{ info.blogSubTitle }}</h2>
 
     </hgroup>
 
@@ -51,17 +51,17 @@
     <div id="content">
         <div>
             <article role="article">
-                <a>Title</a>
+
                 {% block title %}
                 <!--<header>-->
-                    <!--&lt;!&ndash;<h1 class="entry-title">Bolg</h1>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p class="meta">&ndash;&gt;-->
+                    <!--<h1 class="entry-title">博客</h1>-->
+                    <!--<p class="meta">-->
 
 
-                        <!--&lt;!&ndash;<time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,&ndash;&gt;-->
-                            <!--&lt;!&ndash;2014&ndash;&gt;-->
-                        <!--&lt;!&ndash;</time>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                        <!--<time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,-->
+                            <!--2014-->
+                        <!--</time>-->
+                    <!--</p>-->
                 <!--</header>-->
                 {% endblock%}
                 {% block article %}
@@ -78,7 +78,7 @@
                 <ul>
                     {% for article in articles %}
                     <li class="post">
-                        <a href="#">{{ article.title }}</a>
+                        <a href="{{ url_for('index', id=article.id)}}">{{ article.title }}</a>
                     </li>
 
                 </ul>
