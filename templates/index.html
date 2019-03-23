@@ -1,9 +1,13 @@
 {% extends "base.html"%}
 
 
+{% block headtitle %}
+Bolg --WSL
+{%endblock%}
+
 {% block title %}
 <header>
-    <h1 class="entry-title">{{showArticle.title}}</h1>
+    <h2 id="{{showArticle.title}}">{{showArticle.title}}</h2>
     <p class="meta">
 
 
@@ -17,6 +21,6 @@
 
 {% block article %}
 
-    {{ showArticle.text }}
+    {{ showArticle.text | safe }}
 
 {% endblock %}

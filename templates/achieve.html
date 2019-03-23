@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
+{% block headtitle %}
+Achieve --WSL
+{%endblock%}
+
 {% block title %}
 <header>
     <h1 class="entry-title">Blog Archive</h1>
-
 </header>
 {% endblock %}
 
@@ -11,43 +14,24 @@
 {% block article %}
 <div id="blog-archives">
 
-
-    <h2>2017</h2>
-
+    {% for articles in Articles%}
+    <h2>{{ articles.get("year") }}</h2>
+    {% for article in articles.get("articles") %}
     <article>
 
-        <h1><a href="/blog/2017/11/12/love-your-bugs/">Love your bugs</a></h1>
-        <time datetime="2017-11-12T18:23:00-08:00" pubdate><span class='month'>Nov</span> <span
-                class='day'>12</span> <span class='year'>2017</span></time>
-
-
-    </article>
-
-
-    <article>
-
-        <h1><a href="#">Two kinds of feedback</a></h1>
-        <time datetime="2017-06-03T17:23:00-07:00" pubdate><span class='month'>Jun</span> <span
-                class='day'>03</span> <span class='year'>2017</span></time>
+        <h1><a href="{{ url_for('index', id=article.id)}}">{{ article.title }}</a></h1>
+        <time datetime="{{ article.timestamp }}" pubdate><span class='month'>{{ article.timestamp.month}}月</span><span
+                class='day'>{{ article.timestamp.day}}日</span></time>
 
         <footer>
-            <span class="categories">posted in <a class='category' href='/blog/categories/learning/'>learning</a></span>
+            <span class="categories">posted in {% for tag in article.tags%}<a class='category' href="{{ url_for('searchTag', id=tag.id)}}">&nbsp;<span>{{tag.name}}</span>&nbsp;</a>{%endfor%}</span>
         </footer>
 
 
     </article>
-    <article>
+    {% endfor %}
+    {% endfor %}
 
-        <h1><a href="#">Two kinds of feedback</a></h1>
-        <time datetime="2017-06-03T17:23:00-07:00" pubdate><span class='month'>Jun</span> <span
-                class='day'>03</span> <span class='year'>2017</span></time>
-
-        <footer>
-            <span class="categories">posted in <a class='category' href='/blog/categories/learning/'>learning</a></span>
-        </footer>
-
-
-    </article>
 
 
 </div>

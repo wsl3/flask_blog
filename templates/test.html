@@ -1,0 +1,103 @@
+
+<div id='preview-contents' class='note-content'>
+
+
+    <h3 id="0-前话">0. 前话</h3>
+
+    <p>因为想深入学习一下<strong>python</strong>，同时了解一下编译原理，我参考<strong><em>&lt;&lt;python源码剖析&gt;&gt;</em></strong>这本书，对python进行了编译与初次修改。
+        <br>
+        参考书上编译了<strong>python2.5</strong>的源代码，我首先在<strong>windows ，vs2017</strong>环境下尝试编译了<strong>python2.5</strong>源码，发现错误实在太多了，错误解决不掉，<strong><em>卒</em></strong>。然后我尝试编译<strong>python2.7</strong>的源代码，和<strong>python2.5</strong>一样错误太多。最后编译最新的<strong>python3.7</strong>源码，<strong>没有任何问题，真香！</strong>。我在<strong>ubuntu</strong>中编译了<strong>python2.5</strong>源码,
+        没有任何问题。 <br>
+        我怀疑vs2017可以成功编译python3.X版本，编译python2.X版本时大概率都会出错，linux环境下则没有问题. (<strong><em>纯属个人猜测，毕竟我只是尝试了几个流行版本，如果你一定要在vs中编译python2.X而又恰好报错，你可以参考我下面列出的参考资料</em></strong>)
+    </p>
+
+
+    <h3 id="1-python源码下载">1. python源码下载</h3>
+
+    <ul>
+        <li><p>在<a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a>中下载你中意的python版本。
+        </p></li>
+        <li><p>解压并进入解压后的文件夹。</p></li>
+    </ul>
+
+
+    <p>
+    </p>
+
+    <ul>
+        <li><p>以python3.7为例，介绍主要文件夹。</p>
+
+            <ul>
+                <li><p><strong>include: </strong>都是用<strong><em>C</em></strong>写的头文件</p></li>
+                <li><p><strong>Lib: </strong>python自带的标准库，全部使用<strong><em>python</em></strong>写的</p></li>
+                <li><p><strong>Modules: </strong> <strong><em>C</em></strong>语言写的模块，对速度要求较高，如random</p></li>
+                <li><p><strong>Objects: </strong>.c文件，含有python中各种对象的实现，我们修改源代码就可以在该文件夹中修改</p></li>
+                <li><p><strong>Parser和Python：</strong>词法分析，语法分析，Compiler</p></li>
+                <li><p><strong>PCbuild: </strong> 在vs中对它进行编译</p></li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <h3 id="2-python源码编译">2. python源码编译</h3>
+
+
+    <h4 id="21-windowsvs2017编译python37源码">2.1 windows+vs2017编译python3.7源码</h4>
+
+    <ul>
+        <li><p>进入<strong>PCbuild</strong>中，找到<strong>pcbuild.sln</strong>，用vs打开，右击’解决方案pcbuild’，属性，按照以下修改<img
+                longdesc="./1.PNG" alt="Alt text" title="" type="image/png" class=""
+        </p></li>
+    </ul>
+
+
+    <p><img longdesc="./4.PNG" alt="Alt text" title="" type="image/png" class=""
+    </p>
+
+    <p><strong>PS：配置中只勾选python和pythoncore</strong></p>
+
+    <ul>
+        <li><p>按<strong><em>ctrl+shift+B</em></strong>编译</p></li>
+        <li><p>编译完成后发现PCbuild中多了文件夹，点进去就是编译生成的文件，如下图(你可以打开<strong>python_d</strong>看看)</p></li>
+    </ul>
+
+
+    <p><img longdesc="./6.PNG" alt="Alt text" title="" type="image/png" class=""
+    </p>
+
+
+    <h4 id="22-ubuntu编译python25">2.2 Ubuntu编译python2.5</h4>
+
+    <ul>
+        <li><p>进入<strong>解压后的文件夹</strong>，在命令行输入 <strong>./configure –prefix=你自己定义一个目录</strong></p></li>
+        <li><p><strong>make</strong></p></li>
+        <li><p><strong>make install </strong></p></li>
+        <li><p>在自定义目录中可以发现编译后的文件，<strong>python交互式程序在bin文件夹中</strong></p></li>
+    </ul>
+
+
+    <h3 id="python25源码修改">python2.5源码修改</h3>
+
+    <ul>
+        <li><p>进入<strong>python2.5/Objects</strong>文件，找到<strong>intobject.c</strong>，用gedit/vim打开</p></li>
+        <li><p>找到函数 <strong>int_print</strong>，并尝试修改它，如下图</p></li>
+    </ul>
+
+
+    <p><img longdesc="./3.PNG" alt="Alt text" title="" type="image/png" class=""
+    </p>
+
+    <ul>
+        <li><p><strong>红圆圈</strong>是我添加的部分</p></li>
+        <li><p>保存，退出，<strong>重新编译python源码</strong></p></li>
+        <li><p>在自定义目录中找到<strong>/bin/python</strong>， 运行，<strong>打印整数</strong>查看效果</p></li>
+    </ul>
+
+
+    <p><img longdesc="./2.PNG" alt="Alt text" title="" type="image/png" class=""
+    </p>
+
+
+    <h4 id="参考资料"><strong>参考资料</strong>:</h4>
+
+  </div>

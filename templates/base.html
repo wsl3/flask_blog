@@ -3,11 +3,11 @@
 <html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]>
 <html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
-<html class="no-js" lang="en"><!--<![endif]-->
+<!--&lt;!&ndash;[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]>&lt;!&ndash;>-->
+<html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Blog Achieve --WSL</title>
+    <title>{% block headtitle %}{%endblock%}</title>
     <meta name="author" content="{{admin.username}}">
 
     <!-- http://t.co/dKP3o1e -->
@@ -15,18 +15,20 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <link href="{{ url_for('static', filename='markdown.css')}}" media="screen, projection" rel="stylesheet"
+          type="text/css">
     <!--<link rel="canonical" href="#">-->
     <link href="{{ url_for('static', filename='favicon.ico')}}" rel="icon">
     <link href="{{ url_for('static', filename='screen.css')}}" media="screen, projection" rel="stylesheet"
           type="text/css">
+
+
     {% block header %}
     {% endblock %}
 
 
 </head>
 
-<body>
 <header role="banner">
     <hgroup>
         <h1><a href="{{url_for('index')}}">{{ info.blogTitle}}</a></h1>
@@ -54,14 +56,14 @@
 
                 {% block title %}
                 <!--<header>-->
-                    <!--<h1 class="entry-title">博客</h1>-->
-                    <!--<p class="meta">-->
+                <!--<h1 class="entry-title">博客</h1>-->
+                <!--<p class="meta">-->
 
 
-                        <!--<time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,-->
-                            <!--2014-->
-                        <!--</time>-->
-                    <!--</p>-->
+                <!--<time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,-->
+                <!--2014-->
+                <!--</time>-->
+                <!--</p>-->
                 <!--</header>-->
                 {% endblock%}
                 {% block article %}
@@ -87,7 +89,8 @@
                 <ul>
                     {% for tag in tags %}
                     <li class="post">
-                        <a href="#">{{ tag.name }}</a>
+                        <a href="{{ url_for('searchTag', id=tag.id)}}">{{ tag.name }} &nbsp;({{ tag.articles|length
+                            }})</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -100,13 +103,18 @@
     </div>
 </div>
 <footer role="contentinfo"><p>
-    Blog - WSL -
-    <span class="credit">Powered by <a href="https://github.com/pallets/flask">Flask</a></span>
-    <span class="credit">Theme From <a href="http://akaptur.com/">Allison Kaptur</a></span>
+
+    <span class="credit"><a href="{{ url_for('login') }}" target="_blank">Blog</a> - <a href="https://github.com/wsl3/"
+                                                                                        target="_blank">WSL</a></span>
+    <span class="credit">Powered by <a href="https://github.com/pallets/flask" target="_blank">Flask</a></span>
+    <span class="credit">Theme From <a href="http://akaptur.com/" target="_blank">Allison Kaptur</a></span>
+
 </p>
 </footer>
 
-
+<script type="text/javascript" opacity="0.8" color="0,0,255" count="400"
+        src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+　　
 {% block script %}
 {% endblock %}
 </body>

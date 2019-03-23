@@ -1,105 +1,41 @@
 {% extends "base.html"%}
 
+{% block headtitle %}
+About --WSL
+{%endblock%}
+
 {% block title %}
 <header>
-        <h1 class="entry-title">关于我</h1>
-        <p class="meta">
-
-
-            <time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,
-                2014
-            </time>
-        </p>
-    </header>
+    <h1 class="entry-title">关于我</h1>
+    <p class="meta">
+        <time datetime="2019-3-21" pubdate data-updated="true">2019-3-21</time>
+    </p>
+</header>
 
 {% endblock %}
 
 {% block article %}
 
-    <p>
-        　目光所致
 
-        　　也是你
+{{info.text | safe}}
 
-        　　往后余生
 
-        　　风雪是你
+<footer>
+    <p class="meta">
 
-        　　平淡是你
+        <time datetime="2019-3-21" pubdate data-updated="true">2019-3-21</time>
 
-        　　清贫也是你
-
-        　　荣华是你
-
-        　　心底温柔是你
-
-        　　目光所致
-
-        　　也是你
-
-        　　想带你去看晴空万里
-
-        　　想大声告诉你我为你着迷
-
-        　　往事匆匆
-
-        　　你总会感动
-
-        　　往后的余生
-
-        　　我只要你　目光所致
-
-        　　也是你
-
-        　　往后余生
-
-        　　风雪是你
-
-        　　平淡是你
-
-        　　清贫也是你
-
-        　　荣华是你
-
-        　　心底温柔是你
-
-        　　目光所致
-
-        　　也是你
-
-        　　想带你去看晴空万里
-
-        　　想大声告诉你我为你着迷
-
-        　　往事匆匆
-
-        　　你总会感动
-
-        　　往后的余生
-
-        　　我只要你
     </p>
 
+    <div class="sharing">
 
-    <footer>
-        <p class="meta">
-
-
-            <time datetime="2014-05-25T13:14:00-07:00" pubdate data-updated="true">May 25<span>th</span>,
-                2014
-            </time>
-
-        </p>
-
-        <div class="sharing">
-
-            <a href="http://twitter.com/share" class="twitter-share-button"
-               data-url="http://akaptur.github.com/about/index.html" data-via=""
-               data-counturl="http://akaptur.github.com/about/index.html">Tweet</a>
+        <!--<a href="http://twitter.com/share" class="twitter-share-button"-->
+           <!--data-url="http://akaptur.github.com/about/index.html" data-via=""-->
+           <!--data-counturl="http://akaptur.github.com/about/index.html">Tweet</a>-->
 
 
-        </div>
+    </div>
 
 
-    </footer>
+</footer>
 {% endblock %}
