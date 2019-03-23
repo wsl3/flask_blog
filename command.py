@@ -6,28 +6,20 @@ import click
 from time import sleep
 
 
-
 @app.cli.command()
-def forge():
+@click.option("--tags", default=10, help="produce tags")
+@click.option("--articles", default=10, help="produce articles")
+def forge(tags, articles):
     db.drop_all()
     db.create_all()
 
     fake = Faker(locale="zh_CN")
 
-
-    # Admin model
-    admin = Admin(
-        username="wsl",
-        password="123456"
-    )
-    db.session.add(admin)
-    db.session.commit()
-
     # tags
-    for i in range(10):
+    for i in range(tags):
         try:
             tag = Tag(
-                name = fake.word()
+                name=fake.word()
             )
 
             db.session.add(tag)
@@ -36,11 +28,11 @@ def forge():
     db.session.commit()
 
     # articles
-    for i in range(10):
+    for i in range(articles):
         try:
             article = Article(
-                title = fake.sentence(),
-                text = fake.text(),
+                title=fake.sentence(),
+                text=fake.text(),
             )
             article.tags.append(Tag.query.get(randint(1, Tag.query.count())))
             db.session.add()
@@ -48,11 +40,23 @@ def forge():
             continue
     db.session.commit()
 
-    # Info
-    blogTitle = "wsl' blog"
-    blogSubTitle = "wsdwsd"
-    text = "我是来自我是来自我是"
     info = Info()
     db.session.add(info)
     db.session.commit()
     click.echo("Done.")
+
+
+@app.cli.command()
+def rebuild():
+    db.drop_all()
+    db.create_all()
+
+
+@app.cli.command()
+def admin():
+    admin = Admin(
+        username="wsl",
+        password="666"
+    )
+    db.session.add(admin)
+    db.session.commit()
