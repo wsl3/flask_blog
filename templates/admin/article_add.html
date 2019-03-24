@@ -22,7 +22,8 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <h4><label for="input_title">title</label></h4>
-                                <input type="text" name="title" class="form-control" id="input_title" placeholder="请输入title！">
+                                <input type="text" name="title" class="form-control" id="input_title"
+                                       placeholder="请输入title！">
                             </div>
                             <div class="form-group">
                                 <h4><label for="input_title">author</label></h4>
@@ -31,7 +32,8 @@
                             <div class="form-group">
                                 <h4><label name="tag">标签</label></h4>
                                 {% for tag in tags %}
-                                <a><h5><label><input name="tag" type="checkbox" value="{{tag.name}}"/>{{tag.name}}</label></h5></a>
+                                <a><h5><label><input name="tag" type="checkbox"
+                                                     value="{{tag.name}}"/>{{tag.name}}</label></h5></a>
                                 {% endfor %}
                             </div>
                             <div class="form-group">

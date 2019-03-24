@@ -48,7 +48,8 @@
                                     <td>{{article.timestamp}}</td>
                                     <td>
                                         <a href="#" class="label label-success">编辑</a>
-
+                                        &nbsp;
+                                        <a href="{{url_for('article_delete', id=article.id)}}" class="label label-danger">删除</a>
 
                                     </td>
                                 </tr>

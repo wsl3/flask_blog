@@ -2,7 +2,11 @@ from app import app, login_manager, db
 from models import Admin, Article, Tag, Info
 from flask_login import login_required, login_user, logout_user
 from flask import render_template, redirect, request, url_for, flash, session
-from datetime import datetime
+
+
+@login_manager.user_loader
+def user_load(id):
+    return Admin.query.get(id)
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
@@ -14,7 +18,6 @@ def login():
     if request.method == "POST":
         username = request.form.get("username")
         pwd = request.form.get("pwd")
-        print("admin.username:        {}  ".format(admin) )
         if admin.username == username and admin.check_password(pwd):
             flash("login in successfully!")
             session["admin"] = admin.username
@@ -33,10 +36,6 @@ def logout():
     del session["admin"]
     return redirect(url_for("index"))
 
-
-@login_manager.user_loader
-def user_load(id):
-    return Admin.query.get(id)
 
 
 @app.route("/admin/", methods=["GET", "POST"])
@@ -77,6 +76,15 @@ def tag_delete(id):
 @login_required
 def articles_list():
     return render_template("admin/articles_list.html")
+
+
+@app.route("/article_delete/<int:id>")
+@login_required
+def article_delete(id):
+    article = Article.query.get(id)
+    db.session.delete(article)
+    db.session.commit()
+    return redirect(url_for("articles_list"))
 
 
 @app.route("/article_add/", methods=["GET", "POST"])
@@ -125,6 +133,7 @@ def change_pwd():
 
     return render_template("admin/change_pwd.html")
 
+
 @app.route("/change_info", methods=["GET", "POST"])
 @login_required
 def change_info():
@@ -138,3 +147,16 @@ def change_info():
         db.session.commit()
         return redirect(url_for("about"))
     return render_template("admin/change_info.html")
+
+
+@app.route("/update_picture/", methods=["GET", "POST"])
+@login_required
+def update_picture():
+    if request.method == "POST":
+        try:
+            f = request.files.get("picture")
+            f.save("./static/update_images/" + f.filename)
+        except Exception:
+            # 这里就先这样吧(无奈!)
+            return render_template("admin/update_picture.html")
+    return render_template("admin/update_picture.html")
