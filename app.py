@@ -21,4 +21,4 @@ login_manager.login_view = "login"
 from views import *
 from admin import *
 from models import Admin, Article, Tag, Info
-from command import forge
+from command import forge, admin

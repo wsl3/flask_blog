@@ -115,6 +115,31 @@ def article_add():
 
     return render_template("admin/article_add.html")
 
+@app.route("/article_editor/<int:id>", methods=["GET", "POST"])
+@login_required
+def article_editor(id):
+    article = Article.query.get(id)
+    tagsId = [t.id for t in article.tags]
+    if request.method == "POST":
+        tags = request.form.getlist("tag")
+        title = request.form.get("title")
+        author = request.form.get("author") or "wsl"
+        text = request.form.get("text")
+
+        if title and text and tags:
+            article.title = title
+            article.author = author
+            article.text = text
+            try:
+                article.tags = [Tag.query.filter_by(name=t).first() for t in tags]
+                db.session.add(article)
+                db.session.commit()
+            finally:
+                return redirect(url_for("index", id=article.id))
+
+    return render_template("admin/article_editor.html", article=article, tagsId=tagsId)
+
+
 
 @app.route("/change_pwd/", methods=["GET", "POST"])
 @login_required
