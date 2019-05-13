@@ -1,5 +1,4 @@
-# flask_blog
+# flask_blog，[click me](http://39.107.83.159/)
 基于 flask 的博客
 
-## update 2019.3.23  博客基本完成
-### 博客基本完成，还有一些无关紧要的小功能没有实现，先上线再说！
+#### 后台基于Flask, blog style来自 [Allison Kaptur](http://akaptur.com)的博客
